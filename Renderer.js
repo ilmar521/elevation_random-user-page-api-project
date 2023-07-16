@@ -1,4 +1,15 @@
 
+Handlebars.registerHelper('capitalize', function(text) {
+    if (typeof text === 'string') {
+      let words = text.split(' ')
+      let capitalizedWords = words.map(function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      return capitalizedWords.join(' ')
+    }
+    return text
+})
+
 class Renderer {
 
     clearPage() {
@@ -8,7 +19,6 @@ class Renderer {
         $('.meat-container').empty() 
         $('.friends-container').empty()
     }
-
 
     rerenderLoadButton (usersArray) {
         $('.dropdown-menu').empty()
@@ -42,8 +52,11 @@ class Renderer {
         $('.meat-container').append(`<p>${user.about}</p>`)
 
         //poke
-        $('.pokemon-container').append(`<img id="pokemon-image" src="${user.poke.img}">`)
-        $('.pokemon-container').append(`<p id="pokemon-text">Favorite Pokemon: ${user.poke.name}</p>`)
+        const sourcePoke = $('#pokemon-template').html();
+        const templatePoke = Handlebars.compile(sourcePoke);
+        const newHTMLPoke = templatePoke({ poke: [user.poke]});
+        
+        $('.pokemon-container').append(newHTMLPoke);
 
     }
 

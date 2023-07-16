@@ -22,6 +22,12 @@
             <div class="dropdown-item" data-user-id="{{id}}">{{userData.first_name}} {{userData.last_name}}</div>
         {{/each}}
     </script>
+    <script id="pokemon-template" type="text/x-handlebars-template">
+        {{#each poke}}
+            <img id="pokemon-image" src="{{img}}">
+            <p id="pokemon-text">{{capitalize name}}</p>
+        {{/each}}
+    </script>
 
     <div class="container">	
         <div class="user-container"></div>	
