@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>API Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
+</head>
+
+<body>
+    <script id="friends-template" type="text/x-handlebars-template">
+        {{#each friend}}
+            <p>{{this}}</p>
+        {{/each}}
+    </script>
+    <script id="users-template" type="text/x-handlebars-template">
+        {{#each user}}
+            <div class="dropdown-item" data-user-id="{{id}}">{{userData.first_name}} {{userData.last_name}}</div>
+        {{/each}}
+    </script>
+
+    <div class="container">	
+        <div class="user-container"></div>	
+        <div class="quote-container"></div>	
+        <div class="content-container">	
+            <div class="pokemon-container"></div>	
+            <div class="meat-container"></div>	
+        </div>	
+        <div class="friends">	
+            <h4>Friends</h4>	
+            <div class="friends-container">	
+            </div>	
+        </div>	
+        <div class="buttons">	
+            <button id="generate_button">Generate User</button>
+            <button id="save_button">Save User</button>
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="load_button" data-toggle="dropdown">Load User</button>
+                <div class="dropdown-menu" aria-labelledby="load_button">
+                </div>
+              </div>
+        </div>	
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="user.js"></script>
+    <script src="APIManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
