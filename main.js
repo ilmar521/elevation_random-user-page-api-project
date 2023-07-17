@@ -4,14 +4,14 @@ const renderer = new Renderer()
 const usersArray = []
 let currentUser = null
 
-$('#generate_button').on('click', function () {
-    apiManager.fetchUserData().then(() => {
-        let user = new User(apiManager.data)
-        currentUser = user
-        renderer.renderUserPage(user)
-    }).catch(error => {
-        alert("Couldn't get data from API's!")
-    });
+$('#generate_button').on('click', async function () {
+    try {
+        await apiManager.fetchUserData()
+        currentUser = new User(apiManager.data)
+        renderer.renderUserPage(currentUser)      
+    } catch (error) {
+        alert("Couldn't get data from API's!")   
+    }   
 })
 
 $('#save_button').on('click', function () {
@@ -25,10 +25,8 @@ $('#save_button').on('click', function () {
     } else {
         alert("You have to generate user before saving!")
     }
-
 })
 
 $('.dropdown-menu').on('click', '.dropdown-item', function () {
-    let userId = $(this).data('user-id')
-    renderer.renderUserPage(usersArray.find(u => u.id == parseInt(userId))) 
+    renderer.renderUserPage(usersArray.find(u => u.id == parseInt($(this).data('user-id')))) 
 })

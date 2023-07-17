@@ -39,10 +39,10 @@ class Renderer {
         $(userInfo).append(`<p>${user.userData.first_name} ${user.userData.last_name}</p>`)
         $(userInfo).append(`<p>${user.userData.state} ${user.userData.city}</p>`)
 
+        //friends
         const source = $('#friends-template').html();
         const template = Handlebars.compile(source);
         const newHTML = template({ friend: user.friends });
-        
         $('.friends-container').append(newHTML);
 
         //quote
@@ -55,9 +55,7 @@ class Renderer {
         const sourcePoke = $('#pokemon-template').html();
         const templatePoke = Handlebars.compile(sourcePoke);
         const newHTMLPoke = templatePoke({ poke: [user.poke]});
-        
         $('.pokemon-container').append(newHTMLPoke);
-
     }
 
 }
