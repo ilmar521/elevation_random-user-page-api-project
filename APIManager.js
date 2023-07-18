@@ -36,18 +36,15 @@ class APIManager {
                 state: usersData[0].location.state,
                 img: usersData[0].picture.medium,
             }
-            this.data.friends = []
-            for (let i = 1; i < usersData.length; i++) {
-                this.data.friends.push(
-                    `${usersData[i].name.first} ${usersData[i].name.last}`
-                )
-            }
+            this.data.friends = usersData.slice(1).map(user => `${user.name.first} ${user.name.last}`)
             this.data.quote = data[1].quote
             this.data.about = data[2][0]
             this.data.poke = {
                 name: data[3].species.name,
                 img: data[3].sprites.front_default,
-            };
-        });
+            }
+        }).catch(error => {
+            console.log(error)
+        })     
     }
 }
