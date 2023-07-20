@@ -23,8 +23,11 @@
     </script>
     <script id="pokemon-template" type="text/x-handlebars-template">
         {{#each poke}}
-            <img id="pokemon-image" src="{{img}}">
-            <p id="pokemon-text">Favorite Pokemon: {{capitalize name}}</p>
+            <img id="pokemon-gif" src="{{gifUrl}}">
+            <div id="pokemon-info">
+                <img id="pokemon-image" src="{{img}}">
+                <p id="pokemon-text">Favorite Pokemon: {{capitalize name}} -> {{capitalize type}} Type</p>          
+            </div>    
         {{/each}}
     </script>
 
@@ -32,7 +35,8 @@
         <div class="user-container"></div>	
         <div class="quote-container"></div>	
         <div class="content-container">	
-            <div class="pokemon-container"></div>	
+            <div class="pokemon-container">
+            </div>	
             <div class="meat-container"></div>	
         </div>	
         <div class="friends">	

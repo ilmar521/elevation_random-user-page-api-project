@@ -13,7 +13,7 @@ body {
     height: 100vh;
     display: grid;
     grid-template-columns: 3fr 2fr 1fr;
-    grid-template-rows: 1fr 1fr 3fr;
+    grid-template-rows: 10% 20% 70%;
 }
 
 .user-container {
@@ -21,8 +21,8 @@ body {
     grid-row: 1;
     grid-column: 1;
     font-size: 25px;
+    padding: 10px;
     background-color: #3498db;
-    padding: 1vmax;
     box-shadow: 1px 1px 3px black;
     border-bottom-right-radius: 4px;
 }
@@ -49,7 +49,7 @@ body {
     font-size: 1.5vmax;
     text-align: left;
     color: #2c3e50;
-    padding: 1vmax;
+    padding: 30px 10px 10px 10px;
     font-family: 'Indie Flower', cursive;
 }
 
@@ -116,11 +116,24 @@ button, .dropdown-toggle {
 .pokemon-container {
     font-size: 20px;
     padding: 1vw;
-    display: grid;
+    /* display: grid;
     grid-template-columns: minmax(150px, 150px) minmax(200px, 400px);
     align-items: center;
-    justify-self: baseline;
+    justify-self: baseline; */
+    display: flex;
+    flex-direction: column;
     border-bottom: 1px solid #2c3e50;
+}
+
+#pokemon-info {
+    display: flex;
+    align-items: center;
+}
+
+#pokemon-gif {
+    justify-self: left;
+    width: 250px;
+    height: 250px;
 }
 
 .meat-text {

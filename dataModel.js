@@ -7,6 +7,7 @@ class User {
         this.quote = allUserData.quote
         this.about = allUserData.about
         this.poke = allUserData.poke
+        this.bgColor = allUserData.bgColor
         User._id++
         this.id = User._id
     }
@@ -22,7 +23,7 @@ class APIManager {
         ]
     }
 
-    _getAPIdata(url) {
+    getAPIdata(url) {
         return new Promise((resolve, reject) => {
             $.get(url, function (result) {
                 resolve(result)
@@ -31,7 +32,7 @@ class APIManager {
     }
 
     fetchUserData() {
-        return Promise.all(this._urls.map(url => this._getAPIdata(url)))   
+        return Promise.all(this._urls.map(url => this.getAPIdata(url)))   
     }
 }
 
@@ -39,6 +40,15 @@ class UserDataManager {
     constructor() {
         this.users = []
         this.currentUser = null
+        this.colorsModel = {
+            fire: '#FA8072',
+            rock: '#808000',
+            ground: '#8B4513',
+            water: '#00FFFF',
+            grass: '#00FF00',   
+            ice: '#1E90FF'        
+        }
+        this.defaultColor = '#ecf0f1'
     }
 
     setCurrentUser (id) {
@@ -82,7 +92,13 @@ class UserDataManager {
         newUserData.poke = {
             name: dataFromAPI[3].species.name,
             img: dataFromAPI[3].sprites.front_default,
+            type: dataFromAPI[3].types[0].type.name
         }
+        newUserData.bgColor = this.colorsModel[newUserData.poke.type] === undefined ? this.defaultColor : this.colorsModel[newUserData.poke.type]
+
+        const giphyData = await apiManager.getAPIdata(`http://api.giphy.com/v1/gifs/search?q=pokemon+${newUserData.poke.name}&api_key=4OERPiFQVFPIgF4PODJLS3jtMInz5LOH`)
+        newUserData.poke.gifUrl = giphyData.data[0].images.fixed_height.url
+
         this.currentUser = new User(newUserData)
     }    
 }

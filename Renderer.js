@@ -13,6 +13,7 @@ Handlebars.registerHelper('capitalize', function(text) {
 class Renderer {
 
     clearPage() {
+        $('body').attr('style',`background-color: #ecf0f1;`)
         $('.user-container').empty()  
         $('.quote-container').empty() 
         $('.pokemon-container').empty() 
@@ -31,6 +32,8 @@ class Renderer {
 
     renderUserPage (user) {
         this.clearPage()
+
+        $('body').attr('style',`background-color: ${user.bgColor};`)
 
         //user info
         $('.user-container').append(`<img id="profile-pic" src="${user.userData.img}">`)
